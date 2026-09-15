@@ -1,101 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ANGEL ONE WEB | Form Tracker</title>
+<title>Angel One Web | Form Tracker</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px 15px;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(255,120,220,.30), transparent 30%),
+        radial-gradient(circle at 20% 85%, rgba(90,50,220,.35), transparent 35%),
+        linear-gradient(135deg,#28135c,#6c31a8,#d86cb4,#5c32a8);
+
+    position:relative;
+}
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.35;
+    pointer-events:none;
+}
+
+body::before{
+    background:#ff5ca8;
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    background:#6d5cff;
+    right:-100px;
+    bottom:-100px;
+}
+
+.main{
+    width:100%;
+    max-width:470px;
+    position:relative;
+    z-index:2;
+}
+
+.welcome{
+    color:white;
+    margin-bottom:35px;
+    padding:0 18px;
+}
+
+.welcome h1{
+    font-family:Georgia,serif;
+    font-size:58px;
+    line-height:.95;
+    font-weight:700;
+    letter-spacing:-2px;
+}
+
+.welcome h1 span{
+    display:block;
+    color:#ff3d91;
+    font-style:italic;
+}
+
+.welcome p{
+    margin-top:25px;
+    font-size:21px;
+    line-height:1.45;
+    font-weight:600;
+}
+
+.welcome p span{
+    opacity:.75;
+    font-weight:400;
+}
+
+.card{
+    position:relative;
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:38px;
+    padding:48px 28px 28px;
+    box-shadow:
+        0 25px 70px rgba(25,5,70,.35),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    backdrop-filter:blur(20px);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:28%;
+    width:44%;
+    height:7px;
+    border-radius:0 0 10px 10px;
+    background:linear-gradient(90deg,#8338ec,#ff3d91);
+}
+
+.badge{
+    text-align:center;
+    color:#8b3fd0;
+    font-size:15px;
+    font-weight:bold;
+    letter-spacing:5px;
+    margin-bottom:22px;
+}
+
+.badge::before,
+.badge::after{
+    content:"•";
+    color:#ec69ad;
+    margin:0 10px;
+}
+
+.card h2{
+    text-align:center;
+    font-family:Georgia,serif;
+    font-size:34px;
+    color:#171944;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#77748b;
+    font-size:18px;
+    margin-bottom:36px;
+}
+
+.field{
+    margin-bottom:25px;
+}
+
+.field label{
+    display:block;
+    color:#783dc7;
+    font-size:17px;
+    font-weight:bold;
+    margin:0 0 12px 8px;
+    letter-spacing:.5px;
+}
+
+.input-wrap{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#9b5cda;
+    font-size:20px;
+}
+
+input{
+    width:100%;
+    height:70px;
+    border-radius:20px;
+    border:2px solid #e3d9f7;
+    background:rgba(255,255,255,.92);
+    padding:0 18px 0 52px;
+    font-size:18px;
+    color:#27233e;
+    outline:none;
+    transition:.25s;
+    box-shadow:0 5px 20px rgba(120,70,180,.05);
+}
+
+input::placeholder{
+    color:#aaa8bb;
+}
+
+input:focus{
+    border-color:#9b5cda;
+    box-shadow:0 0 0 4px rgba(155,92,218,.10);
+}
+
+button{
+    width:100%;
+    height:68px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(100deg,#ef3b91,#ee4281);
+    color:white;
+    font-size:19px;
+    font-weight:bold;
+    letter-spacing:2px;
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 28px rgba(239,59,145,.35);
+
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 16px 35px rgba(239,59,145,.45);
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+button:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.arrow{
+    font-size:27px;
+    margin-left:8px;
+    vertical-align:-2px;
+}
+
+.features{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    margin-top:28px;
+    color:#898399;
+    font-size:15px;
+}
+
+.feature{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.feature-icon{
+    color:#8752cf;
+    font-size:17px;
+}
+
+.line{
+    width:1px;
+    height:18px;
+    background:#d4cddd;
+}
+
+.terms{
+    text-align:center;
+    color:#aaa3b3;
+    font-size:13px;
+    line-height:1.5;
+    margin-top:22px;
+}
+
+.terms a{
+    color:#793ec5;
+    text-decoration:underline;
+}
+
+#message{
+    text-align:center;
+    min-height:20px;
+    margin-top:13px;
+    font-size:14px;
+    font-weight:600;
+}
+
+@media(max-width:500px){
+
+    body{
+        padding:20px 12px;
+        align-items:flex-start;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255, 0, 150, 0.35), transparent 35%),
-        radial-gradient(circle at 80% 80%, rgba(100, 0, 255, 0.35), transparent 35%),
-        linear-gradient(135deg, #19002e, #4b075f, #17002c);
-      overflow-x: hidden;
+    .main{
+        margin-top:20px;
     }
 
-    .container {
-      width: 100%;
-      max-width: 430px;
+    .welcome{
+        margin-bottom:30px;
+        padding:0 15px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.97);
-      border-radius: 28px;
-      padding: 32px 25px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    .welcome h1{
+        font-size:48px;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, #ff1493, #8a2be2, #ff1493);
+    .welcome p{
+        font-size:18px;
+        margin-top:20px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 8px 15px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #ffe4f3, #eee2ff);
-      color: #8a168d;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
+    .card{
+        padding:42px 22px 25px;
+        border-radius:34px;
     }
 
-    h1 {
-      font-size: 30px;
-      color: #261033;
-      margin-bottom: 8px;
+    .card h2{
+        font-size:30px;
     }
 
-    .welcome {
-      font-size: 18px;
-      font-weight: 700;
-      color: #8a168d;
-      margin-bottom: 8px;
+    .subtitle{
+        font-size:16px;
     }
 
-    .subtitle {
-      color: #777;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 25px;
+    input{
+        height:65px;
     }
 
-    .input-group {
-      text-align: left;
-      margin-bottom: 17px;
+    button{
+        height:65px;
+        font-size:17px;
     }
 
-    .input-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: #3d3044;
-      margin-bottom: 7px;
+    .features{
+        font-size:13px;
+        gap:9px;
+    }
+}
+
+@media(max-width:360px){
+
+    .welcome h1{
+        font-size:42px;
     }
 
-    .input-box {
-      position:
+    .card h2{
+        font-size:26px;
+    }
+
+    .features{
+        font-size:11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+    <div class="welcome">
+
+        <h1>
+            Welcome
+            <span>Back!</span>
+        </h1>
+
+        <p>
+            Exclusive Benefits
+            <span>curated<br>
+            just for you today ✦</span>
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <div class="badge">
+            FORMTRACKER
+        </div>
+
+        <h2>ANGEL ONE WEB</h2>
+
+        <div class="subtitle">
+            Fill in your details & unlock exclusive deals
+        </div>
+
+        <form id="leadForm">
+
+            <div class="field">
+
+                <label for="name">
+                    ♙ &nbsp;NAME
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">♙</span>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="NAME"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="field">
+
+                <label for="mobile">
+                    ✎ &nbsp;NUMBER
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">✎</span>
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="NUMBER"
+                        maxlength="10"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                id="submitBtn"
+            >
+                UNLOCK BENEFITS
+                <span class="arrow">→</span>
+            </button>
+
+            <div id="message"></div>
+
+            <div class="features">
+
+                <div class="feature">
+                    <span class="feature-icon">♧</span>
+                    Secure
+                </div>
+
+                <div class="line"></div>
+
+                <div class="feature">
+                    <span class="feature-icon">◉</span>
+                    Private
+                </div>
+
+                <div class="line"></div>
+
+                <div class="feature">
+                    <span class="feature-icon">ϟ</span>
+                    Instant
+                </div>
+
+            </div>
+
+            <div class="terms">
+
+                By continuing, you agree to our
+                <a href="#" onclick="return false;">
+                    Terms & Privacy
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================================
+   NEW GOOGLE APPS SCRIPT URL
+   ========================================= */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzsxb4sN9v3OlN8F6DBPr0w526hK8Nm-dxE4Cv8AxE2meXibNOwpscxEk1BPwebzX25Rw/exec";
+
+
+/* =========================================
+   ANGEL ONE REDIRECT URL
+   ========================================= */
+
+const REDIRECT_URL =
+"https://a.aonelink.in/ANGOne/LOrw0ZC?utm_source=youtube&utm_medium=Netex&utm_campaign=405Login";
+
+
+const form =
+document.getElementById("leadForm");
+
+const button =
+document.getElementById("submitBtn");
+
+const message =
+document.getElementById("message");
+
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const name =
+    document.getElementById("name").value.trim();
+
+    const mobile =
+    document.getElementById("mobile").value.trim();
+
+
+    /* NAME VALIDATION */
+
+    if(name.length < 2){
+
+        message.textContent =
+        "Please enter your name.";
+
+        message.style.color =
+        "#e53935";
+
+        return;
+    }
+
+
+    /* MOBILE VALIDATION */
+
+    if(!/^[0-9]{10}$/.test(mobile)){
+
+        message.textContent =
+        "Please enter a valid 10-digit mobile number.";
+
+        message.style.color =
+        "#e53935";
+
+        return;
+    }
+
+
+    /* LOADING */
+
+    button.disabled = true;
+
+    button.innerHTML =
+    "SUBMITTING...";
+
+    message.textContent =
+    "Please wait...";
+
+    message.style.color =
+    "#777";
+
+
+    /* FORM DATA */
+
+    const formData =
+    new FormData();
+
+    formData.append(
+        "name",
+        name
+    );
+
+    formData.append(
+        "mobile",
+        mobile
+    );
+
+
+    /* SEND TO NEW GOOGLE SHEET */
+
+    fetch(SCRIPT_URL, {
+
+        method:"POST",
+
+        body:formData,
+
+        mode:"no-cors"
+
+    })
+
+    .then(function(){
+
+        message.textContent =
+        "Submitted successfully!";
+
+        message.style.color =
+        "#20a05a";
+
+
+        /* REDIRECT */
+
+        setTimeout(function(){
+
+            window.location.href =
+            REDIRECT_URL;
+
+        },800);
+
+    })
+
+
+    .catch(function(error){
+
+        console.error(error);
+
+        message.textContent =
+        "Something went wrong. Please try again.";
+
+        message.style.color =
+        "#e53935";
+
+        button.disabled =
+        false;
+
+        button.innerHTML =
+        'UNLOCK BENEFITS <span class="arrow">→</span>';
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
