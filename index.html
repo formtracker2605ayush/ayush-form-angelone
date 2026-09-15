@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Angel One Web | Form Tracker</title>
+<title>Ayush Tasks | Angel One Web</title>
 
 <style>
 *{
@@ -67,6 +67,8 @@ body::after{
     z-index:2;
 }
 
+/* ===== WELCOME ===== */
+
 .welcome{
     color:white;
     margin-bottom:35px;
@@ -99,12 +101,15 @@ body::after{
     font-weight:400;
 }
 
+/* ===== CARD ===== */
+
 .card{
     position:relative;
     background:rgba(255,255,255,.94);
     border:1px solid rgba(255,255,255,.8);
     border-radius:38px;
     padding:48px 28px 28px;
+
     box-shadow:
         0 25px 70px rgba(25,5,70,.35),
         inset 0 1px 0 rgba(255,255,255,.9);
@@ -123,13 +128,15 @@ body::after{
     background:linear-gradient(90deg,#8338ec,#ff3d91);
 }
 
+/* ===== HEADER ===== */
+
 .badge{
     text-align:center;
     color:#8b3fd0;
     font-size:15px;
     font-weight:bold;
     letter-spacing:5px;
-    margin-bottom:22px;
+    margin-bottom:18px;
 }
 
 .badge::before,
@@ -138,6 +145,19 @@ body::after{
     color:#ec69ad;
     margin:0 10px;
 }
+
+/* ===== AYUSH TASKS ===== */
+
+.company-name{
+    text-align:center;
+    color:#8b3fd0;
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    margin-bottom:12px;
+}
+
+/* ===== ANGEL ONE ===== */
 
 .card h2{
     text-align:center;
@@ -153,6 +173,8 @@ body::after{
     font-size:18px;
     margin-bottom:36px;
 }
+
+/* ===== INPUT ===== */
 
 .field{
     margin-bottom:25px;
@@ -203,6 +225,8 @@ input:focus{
     box-shadow:0 0 0 4px rgba(155,92,218,.10);
 }
 
+/* ===== BUTTON ===== */
+
 button{
     width:100%;
     height:68px;
@@ -243,6 +267,8 @@ button:disabled{
     vertical-align:-2px;
 }
 
+/* ===== FEATURES ===== */
+
 .features{
     display:flex;
     justify-content:center;
@@ -270,6 +296,8 @@ button:disabled{
     background:#d4cddd;
 }
 
+/* ===== TERMS ===== */
+
 .terms{
     text-align:center;
     color:#aaa3b3;
@@ -283,6 +311,8 @@ button:disabled{
     text-decoration:underline;
 }
 
+/* ===== MESSAGE ===== */
+
 #message{
     text-align:center;
     min-height:20px;
@@ -290,6 +320,8 @@ button:disabled{
     font-size:14px;
     font-weight:600;
 }
+
+/* ===== MOBILE ===== */
 
 @media(max-width:500px){
 
@@ -321,6 +353,10 @@ button:disabled{
         border-radius:34px;
     }
 
+    .company-name{
+        font-size:22px;
+    }
+
     .card h2{
         font-size:30px;
     }
@@ -350,6 +386,10 @@ button:disabled{
         font-size:42px;
     }
 
+    .company-name{
+        font-size:20px;
+    }
+
     .card h2{
         font-size:26px;
     }
@@ -365,11 +405,13 @@ button:disabled{
 
 <div class="main">
 
+    <!-- ===== WELCOME ===== -->
+
     <div class="welcome">
 
         <h1>
-            Ayush
-            <span>Tasks!</span>
+            Welcome
+            <span>Back!</span>
         </h1>
 
         <p>
@@ -380,19 +422,33 @@ button:disabled{
 
     </div>
 
+
+    <!-- ===== FORM CARD ===== -->
+
     <div class="card">
 
         <div class="badge">
             FORMTRACKER
         </div>
 
-        <h2>ANGEL ONE WEB</h2>
+        <!-- COMPANY NAME IN CENTER -->
+
+        <div class="company-name">
+            AYUSH TASKS
+        </div>
+
+        <h2>
+            ANGEL ONE WEB
+        </h2>
 
         <div class="subtitle">
             Fill in your details & unlock exclusive deals
         </div>
 
+
         <form id="leadForm">
+
+            <!-- NAME -->
 
             <div class="field">
 
@@ -402,7 +458,9 @@ button:disabled{
 
                 <div class="input-wrap">
 
-                    <span class="input-icon">♙</span>
+                    <span class="input-icon">
+                        ♙
+                    </span>
 
                     <input
                         type="text"
@@ -417,6 +475,9 @@ button:disabled{
 
             </div>
 
+
+            <!-- NUMBER -->
+
             <div class="field">
 
                 <label for="mobile">
@@ -425,7 +486,9 @@ button:disabled{
 
                 <div class="input-wrap">
 
-                    <span class="input-icon">✎</span>
+                    <span class="input-icon">
+                        ✎
+                    </span>
 
                     <input
                         type="tel"
@@ -442,6 +505,9 @@ button:disabled{
 
             </div>
 
+
+            <!-- BUTTON -->
+
             <button
                 type="submit"
                 id="submitBtn"
@@ -450,34 +516,50 @@ button:disabled{
                 <span class="arrow">→</span>
             </button>
 
+
+            <!-- MESSAGE -->
+
             <div id="message"></div>
+
+
+            <!-- FEATURES -->
 
             <div class="features">
 
                 <div class="feature">
-                    <span class="feature-icon">♧</span>
+                    <span class="feature-icon">
+                        ♧
+                    </span>
                     Secure
                 </div>
 
                 <div class="line"></div>
 
                 <div class="feature">
-                    <span class="feature-icon">◉</span>
+                    <span class="feature-icon">
+                        ◉
+                    </span>
                     Private
                 </div>
 
                 <div class="line"></div>
 
                 <div class="feature">
-                    <span class="feature-icon">ϟ</span>
+                    <span class="feature-icon">
+                        ϟ
+                    </span>
                     Instant
                 </div>
 
             </div>
 
+
+            <!-- TERMS -->
+
             <div class="terms">
 
                 By continuing, you agree to our
+
                 <a href="#" onclick="return false;">
                     Terms & Privacy
                 </a>
@@ -489,6 +571,7 @@ button:disabled{
     </div>
 
 </div>
+
 
 <script>
 
@@ -508,6 +591,10 @@ const REDIRECT_URL =
 "https://a.aonelink.in/ANGOne/LOrw0ZC?utm_source=youtube&utm_medium=Netex&utm_campaign=405Login";
 
 
+/* =========================================
+   FORM ELEMENTS
+   ========================================= */
+
 const form =
 document.getElementById("leadForm");
 
@@ -518,12 +605,18 @@ const message =
 document.getElementById("message");
 
 
+/* =========================================
+   FORM SUBMIT
+   ========================================= */
+
 form.addEventListener("submit", function(e){
 
     e.preventDefault();
 
+
     const name =
     document.getElementById("name").value.trim();
+
 
     const mobile =
     document.getElementById("mobile").value.trim();
@@ -564,6 +657,7 @@ form.addEventListener("submit", function(e){
     button.innerHTML =
     "SUBMITTING...";
 
+
     message.textContent =
     "Please wait...";
 
@@ -587,7 +681,7 @@ form.addEventListener("submit", function(e){
     );
 
 
-    /* SEND TO NEW GOOGLE SHEET */
+    /* SEND DATA TO GOOGLE SHEET */
 
     fetch(SCRIPT_URL, {
 
@@ -629,6 +723,7 @@ form.addEventListener("submit", function(e){
 
         message.style.color =
         "#e53935";
+
 
         button.disabled =
         false;
